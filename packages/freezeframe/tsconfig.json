@@ -1,18 +1,15 @@
 {
-  "exclude": ["./tests/ts-intellisense"],
   "compilerOptions": {
-    "outDir": "./dist/",
+    "target": "es5",
+    "module": "commonjs",
     "declaration": true,
-    "declarationDir": "./dist/",
-    "noImplicitAny": true,
-    "module": "es2020",
-    "target": "es2015",
-    "lib": ["es2017", "dom"],
-    "allowJs": true,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "types": [
-      "jest"
-    ]
-  }
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["es2015", "dom"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

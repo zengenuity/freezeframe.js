@@ -5,22 +5,13 @@
     }
   },
   "presets": [
-    [
-      "@babel/env",
-      {
-        "useBuiltIns": "usage",
-        "corejs": "2",
-        "targets": {
-          "browsers": [
-            "Chrome >= 52",
-            "FireFox >= 44",
-            "Safari >= 7",
-            "Explorer 11",
-            "last 4 Edge versions"
-          ]
-        }
-      }
-    ]
+    ["@babel/preset-env", {
+      "targets": {
+        "browsers": ["> 0.25%", "not dead"]
+      },
+      "useBuiltIns": "usage",
+      "corejs": 3
+    }]
   ],
   "plugins": [
     "@babel/plugin-proposal-class-properties",
