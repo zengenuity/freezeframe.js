@@ -24,10 +24,14 @@ export const stylesheet = () => `
       overflow: hidden;
     }
     .freezeframe-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
       display: block;
       max-width: 100%;
       opacity: 0;
       transition: opacity 0.3s ease;
+      z-index: 1;
     }
     .freezeframe-canvas.freezeframe-canvas-ready {
       opacity: 1;
@@ -37,6 +41,11 @@ export const stylesheet = () => `
     }
     .freezeframe-container.freezeframe-ready .freezeframe-loading-icon {
       display: none;
+    }
+    .freezeframe-image {
+      position: relative;
+      z-index: 2;
+      transition: opacity 0.3s ease;
     }
     .freezeframe-container.freezeframe-active .freezeframe-image {
       opacity: 1;
@@ -56,6 +65,7 @@ export const stylesheet = () => `
       background: rgba(0, 0, 0, 0.5);
       opacity: 0;
       transition: opacity 0.3s ease;
+      z-index: 3;
     }
     .freezeframe-container:hover .freezeframe-overlay {
       opacity: 1;
