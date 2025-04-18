@@ -9,8 +9,11 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'freezeframe.js',
-    library: 'Freezeframe',
-    libraryTarget: 'umd',
+    library: {
+      name: 'Freezeframe',
+      type: 'umd',
+      export: 'default'
+    },
     globalObject: 'this'
   },
   module: {

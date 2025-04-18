@@ -3,10 +3,11 @@
   "version": "5.0.2",
   "description": "A JavaScript library that pauses animated .gifs and enables them to animate on mouse hover or click.",
   "main": "dist/freezeframe.js",
-  "module": "dist/freezeframe.esm.js",
-  "types": "dist/freezeframe.d.ts",
+  "module": "dist/freezeframe.js",
+  "types": "types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
     "build": "webpack --mode production",
