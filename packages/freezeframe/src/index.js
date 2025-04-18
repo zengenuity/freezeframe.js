@@ -40,7 +40,8 @@ class Freezeframe {
     this.eventListeners = {
       start: [],
       stop: [],
-      toggle: []
+      toggle: [],
+      ready: []
     };
     this.init(this.target);
   }
@@ -114,6 +115,7 @@ class Freezeframe {
 
       canvas.addEventListener('transitionend', () => {
         this.ready(container);
+        this.emit('ready', freeze);
         resolve(freeze);
       }, {
         once: true
@@ -245,7 +247,8 @@ class Freezeframe {
     this.eventListeners = {
       start: [],
       stop: [],
-      toggle: []
+      toggle: [],
+      ready: []
     };
   }
 }
