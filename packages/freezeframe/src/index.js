@@ -99,27 +99,40 @@ class Freezeframe {
   process(freeze) {
     return new Promise((resolve) => {
       const { canvas, image, container } = freeze;
-      const { width, height } = image.getClientRects()[0];
-      const clientWidth = Math.ceil(width);
-      const clientHeight = Math.ceil(height);
 
-      canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
-      canvas.setAttribute('width', clientWidth.toString());
-      canvas.setAttribute('height', clientHeight.toString());
+      // Wait for the image to be fully loaded
+      if (!image.complete || image.naturalWidth === 0) {
+        image.addEventListener('load', () => this.processImage(freeze, resolve));
+      } else {
+        this.processImage(freeze, resolve);
+      }
+    });
+  }
 
-      const context = canvas.getContext('2d');
-      context.drawImage(image, 0, 0, clientWidth, clientHeight);
+  processImage(freeze, resolve) {
+    const { canvas, image, container } = freeze;
+    const rect = image.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const clientWidth = Math.ceil(width);
+    const clientHeight = Math.ceil(height);
 
-      canvas.classList.add(classes.CANVAS_READY);
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    canvas.setAttribute('width', clientWidth.toString());
+    canvas.setAttribute('height', clientHeight.toString());
 
-      canvas.addEventListener('transitionend', () => {
-        this.ready(container);
-        this.emit('ready', freeze);
-        resolve(freeze);
-      }, {
-        once: true
-      });
+    const context = canvas.getContext('2d');
+    context.drawImage(image, 0, 0, clientWidth, clientHeight);
+
+    canvas.classList.add(classes.CANVAS_READY);
+
+    canvas.addEventListener('transitionend', () => {
+      this.ready(container);
+      this.emit('ready', freeze);
+      resolve(freeze);
+    }, {
+      once: true
     });
   }
 
